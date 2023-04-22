@@ -5,7 +5,7 @@ function Footer() {
   return (
     <div className="footer">
       <div className="container">
-        <div className="top">
+        {/* <div className="top">
           <div className="item">
             <h2>Categories</h2>
             <span>Graphics & Design</span>
@@ -64,7 +64,7 @@ function Footer() {
             <span>Learn</span>
             <span>Working Not Working</span>
           </div>
-        </div>
+        </div> */}
         <hr />
         <div className="bottom">
           <div className="left">

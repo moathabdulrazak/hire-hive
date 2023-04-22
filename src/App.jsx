@@ -5,7 +5,7 @@ import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/home/Home";
 import Gigs from "./pages/gigs/Gigs";
-import {MyGigs} from "./pages/myGigs/MyGigs";
+import MyGigs from "./pages/myGigs/MyGigs";
 import Gig from "./pages/gig/Gig";
 import Login from "./pages/login/Login";
 import Add from "./pages/add/Add";
@@ -41,7 +41,7 @@ function App() {
           element: <Gigs />,
         },
         {
-          path: "/myGigs",
+          path: "/mygigs",
           element: <MyGigs/>
         },
         {
