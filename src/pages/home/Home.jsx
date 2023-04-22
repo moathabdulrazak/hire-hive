@@ -1,6 +1,7 @@
 import React from 'react'
 import "./Home.scss"
 import Featured from "../../components/featured/Featured.jsx"
+import TrustedBy from "../../components/trustedBy/TrustedBy.jsx"
 
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
     <div className="home" >
 
       <Featured/>
+      <TrustedBy/>
     </div>
   )
 }
