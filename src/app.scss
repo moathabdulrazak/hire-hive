@@ -3,5 +3,8 @@
     text-decoration: none;
     color: inherit;
   }
-  
+  html, body {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
 }
