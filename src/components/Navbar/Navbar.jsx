@@ -10,9 +10,15 @@ const Navbar = () => {
   useEffect(() => {
     window.addEventListener("scroll", isActive);
     return () => {
-      window.removeEventListener('scroll', isActive)
-    }
+      window.removeEventListener("scroll", isActive);
+    };
   }, []);
+
+  const currentUser = {
+    id: 1,
+    userName: "Moath abdulrazak",
+    isSeller: true,
+  };
 
   return (
     <div className={active ? "navbar active" : "navbar"}>
@@ -28,8 +34,27 @@ const Navbar = () => {
           <span>Explore</span>
           <span>English</span>
           <span>Sign in</span>
-          <span>Become a seller</span>
-          <button>Join</button>
+          {!currentUser?.isSeller && <span>Become a seller</span>}
+          { !currentUser && <button>Join</button>}
+          {currentUser && (
+            <div className="user" >
+              <img src="" alt="" />
+              <span>{currentUser?.userName}</span>
+              <div className="options">
+                {
+                  currentUser?.isSeller && (
+                    <>
+                    <span>Gigs</span>
+                    <span>Add New Gig</span>
+                    </>
+                  )
+                }
+                <span>Orders</span>
+                <span>Messages</span>
+                <span>Logout</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       {active && (
