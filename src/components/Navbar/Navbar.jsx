@@ -25,9 +25,9 @@ const Navbar = () => {
     <div className={active ? "navbar active" : "navbar"}>
       <div className="container">
         <div className="logo">
-          {/* <Link to={'/'} > */}
+          <Link to={'/'} >
           <span className="text">Hire Hive</span>
-          {/* </Link> */}
+          </Link>
           <span className="dot">.</span>
         </div>
         <div className="links">
