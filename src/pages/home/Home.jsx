@@ -4,8 +4,10 @@ import Featured from "../../components/featured/Featured.jsx"
 import TrustedBy from "../../components/trustedBy/TrustedBy.jsx"
 import Slide from "../../components/Slide/Slide.jsx"
 
-import {cards} from '../../data.js'
+import {cards, projects} from '../../data.js'
 import CatCard from "../../components/catCard/catCard.jsx"
+import ProjectCard from "../../components/projectCard/ProjectCard.jsx"
+ProjectCard
 const Home = () => {
   return (
     <div className="home" >
@@ -81,8 +83,8 @@ const Home = () => {
         </div>
       </div>
       <Slide slideToShow={5} arrowScroll={5} >
-        {cards.map(card => (
-          <CatCard key={card.id} card={card} />
+        {projects.map(item => (
+          <ProjectCard key={item.id} item={item} />
         ))}
       </Slide>
     </div>
