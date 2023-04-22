@@ -38,7 +38,7 @@ const Navbar = () => {
           { !currentUser && <button>Join</button>}
           {currentUser && (
             <div className="user" >
-              <img src="" alt="" />
+              <img src="https://imgur.com/DCJWGRP.png" alt="" />
               <span>{currentUser?.userName}</span>
               <div className="options">
                 {
