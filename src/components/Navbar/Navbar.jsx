@@ -3,6 +3,7 @@ import "./Navbar.scss";
 import { Link } from "react-router-dom";
 const Navbar = () => {
   const [active, setActive] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -30,17 +31,17 @@ const Navbar = () => {
           <span className="dot">.</span>
         </div>
         <div className="links">
-          <span>Hives business</span>
+          <span>Hive business</span>
           <span>Explore</span>
           <span>English</span>
           <span>Sign in</span>
           {!currentUser?.isSeller && <span>Become a seller</span>}
           { !currentUser && <button>Join</button>}
           {currentUser && (
-            <div className="user" >
+            <div className="user" onClick={() => setOpen(!open)} >
               <img src="https://imgur.com/DCJWGRP.png" alt="" />
               <span>{currentUser?.userName}</span>
-              <div className="options">
+            { open && <div className="options">
                 {
                   currentUser?.isSeller && (
                     <>
@@ -52,7 +53,7 @@ const Navbar = () => {
                 <span>Orders</span>
                 <span>Messages</span>
                 <span>Logout</span>
-              </div>
+              </div>}
             </div>
           )}
         </div>
