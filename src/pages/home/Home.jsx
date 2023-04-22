@@ -82,7 +82,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Slide slideToShow={5} arrowScroll={5} >
+      <Slide slideToShow={4} arrowScroll={4} >
         {projects.map(item => (
           <ProjectCard key={item.id} item={item} />
         ))}

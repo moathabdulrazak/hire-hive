@@ -4,7 +4,7 @@ import "./ProjectCard.scss";
 
 function ProjectCard({ item }) {
   return (
-    <Link to="/">
+    <Link to="/" className="link" >
       <div className="projectCard">
         <img src={item.img} alt="img" />
         <div className="info">
