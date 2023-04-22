@@ -13,7 +13,7 @@ import Footer from "./components/footer/Footer";
 import { Register } from "./pages/register/Register";
 import { Messages } from "./pages/messages/messages";
 import { Message } from "./pages/message/message";
-import { Orders } from "./pages/orders/orders";
+import Orders from "./pages/orders/Orders.jsx";
 
 
 function App() {
