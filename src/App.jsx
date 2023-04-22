@@ -1,3 +1,5 @@
+
+import "./app.scss";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
