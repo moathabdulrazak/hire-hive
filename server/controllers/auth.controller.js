@@ -19,7 +19,21 @@ export const register  = async (req, res) => {
 
 
 
-export const login = (req, res) => {
+export const login = async (req, res) => {
+  try {
+    const user = await User.findOne({username: req.body.username})
+    if(!user) return res.status(404).send("User Not found!")
+
+    const isCorrect = bcrypt.compareSync(req.body.password, user.password)
+    if(!isCorrect) return res.status(400).send("Wrong password or username!")
+
+    // @ts-ignore
+    const {password, ...info} = user._doc
+
+    res.status(200).send(info)
+  } catch (error) {
+    res.status(500).send("something went wrong with logging in")
+  }
 }
 export const logout = (req, res) => {
 }
