@@ -14,7 +14,7 @@ export const register = async (req, res, next) => {
     await newUser.save();
     res.status(201).send("user has been created");
   } catch (error) {
-    next(err)
+    next(error)
   }
 };
 
@@ -38,7 +38,12 @@ export const login = async (req, res, next) => {
       httpOnly: "true"
     }).status(200).send(info);
   } catch (error) {
-    next(err)
+    next(error)
   }
 };
-export const logout = (req, res) => {};
+export const logout =  async (req, res, next) => {
+  res.clearCookie('accessToken', {
+    sameSite: "none",
+    secure: true,
+  }).status(200).send('User has been logged out.')
+};
