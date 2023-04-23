@@ -17,11 +17,7 @@ const Navbar = () => {
     };
   }, []);
 
-  const currentUser = {
-    id: 1,
-    userName: "Moath abdulrazak",
-    isSeller: true,
-  };
+  const currentUser = JSON.parse(localStorage.getItem('currentUser' ))
 
   return (
     <div className={active || pathname !=="/" ? "navbar active" : "navbar"}>
@@ -41,8 +37,8 @@ const Navbar = () => {
           {!currentUser && <button>Join</button>}
           {currentUser && (
             <div className="user" onClick={() => setOpen(!open)}>
-              <img src="https://imgur.com/DCJWGRP.png" alt="" />
-              <span>{currentUser?.userName}</span>
+              <img src={currentUser.img || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png' } alt="" />
+              <span>{currentUser.username}</span>
               {open && (
                 <div className="options">
                   {currentUser?.isSeller && (
