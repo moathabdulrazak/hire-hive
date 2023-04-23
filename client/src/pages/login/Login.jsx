@@ -7,6 +7,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
 
@@ -15,7 +16,10 @@ function Login() {
     try {
       const res = await newRequest.post("/auth/login", { username, password });
       localStorage.setItem("currentUser", JSON.stringify(res.data));
-      navigate("/")
+      setSuccess(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 1000); // wait 3 seconds before redirecting to home page
     } catch (err) {
       setError(err.response.data);
     }
@@ -41,6 +45,9 @@ function Login() {
         />
         <button type="submit">Login</button>
         {error && error}
+        {success && (
+          <p style={{ color: "green" }}>You have successfully logged in!</p>
+        )}
       </form>
     </div>
   );
