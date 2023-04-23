@@ -15,7 +15,7 @@ const connect = async () => {
     console.log(error);
   }
 };
-app.use('/api/user', userRoute);
+app.use('/api/users', userRoute);
 
 app.listen(8800, () => {
   connect()
