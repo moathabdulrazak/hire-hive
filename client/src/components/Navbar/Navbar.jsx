@@ -18,12 +18,14 @@ const Navbar = () => {
     };
   }, []);
 
+  // @ts-ignore
   const currentUser = JSON.parse(localStorage.getItem('currentUser' ))
   const navigate = useNavigate()
 
   const handleLogout = async () => {
     try {
       await newRequest.post("/auth/logout");
+      // @ts-ignore
       localStorage.setItem("currentUser", null);
       navigate("/");
     } catch (err) {

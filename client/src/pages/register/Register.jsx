@@ -65,7 +65,9 @@ function Register() {
           <label htmlFor="">Password</label>
           <input name="password" type="password" onChange={handleChange} />
           <label htmlFor="">Profile Picture</label>
-          <input type="file" onChange={(e) => setFile(e.target?.files[0])} />
+          <input type="file" onChange={(e) => setFile(
+// @ts-ignore
+          e.target.files[0])} />
           <label htmlFor="">Country</label>
           <input
             name="country"
@@ -96,7 +98,9 @@ function Register() {
             placeholder="A short description of yourself"
             name="desc"
             id=""
+            // @ts-ignore
             cols="30"
+            // @ts-ignore
             rows="10"
             onChange={handleChange}
           ></textarea>
