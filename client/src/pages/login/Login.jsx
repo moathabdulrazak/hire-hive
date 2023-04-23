@@ -19,7 +19,7 @@ function Login() {
       setSuccess(true);
       setTimeout(() => {
         navigate("/");
-      }, 1000); 
+      }, 500); 
     } catch (err) {
       setError(err.response.data);
     }
