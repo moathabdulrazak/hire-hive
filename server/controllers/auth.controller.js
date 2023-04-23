@@ -14,7 +14,7 @@ export const register = async (req, res, next) => {
     await newUser.save();
     res.status(201).send("user has been created");
   } catch (error) {
-    next(error)
+    next(err)
   }
 };
 
@@ -24,7 +24,7 @@ export const login = async (req, res, next) => {
     if (!user) return next(createError(404, "User not found!"));
 
     const isCorrect = bcrypt.compareSync(req.body.password, user.password);
-    if (!isCorrect) return res.status(400).send("Wrong password or username!");
+    if (!isCorrect) return next(createError(404, "Wrong password or username"));
 
     const token = jwt.sign({
       id: user._id,
@@ -38,7 +38,7 @@ export const login = async (req, res, next) => {
       httpOnly: "true"
     }).status(200).send(info);
   } catch (error) {
-    res.status(500).send("something went wrong with logging in");
+    next(err)
   }
 };
 export const logout = (req, res) => {};
