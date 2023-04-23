@@ -10,7 +10,7 @@ import Gig from "./pages/gig/Gig";
 import Login from "./pages/login/Login";
 import Add from "./pages/add/Add";
 import Footer from "./components/footer/Footer";
-import { Register } from "./pages/register/Register";
+import  Register  from "./pages/register/Register";
 import Messages  from "./pages/messages/messages";
 import  Message  from "./pages/message/message";
 import Orders from "./pages/orders/Orders.jsx";
