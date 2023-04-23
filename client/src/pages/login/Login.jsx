@@ -19,7 +19,7 @@ function Login() {
       setSuccess(true);
       setTimeout(() => {
         navigate("/");
-      }, 1000); // wait 3 seconds before redirecting to home page
+      }, 1000); 
     } catch (err) {
       setError(err.response.data);
     }
