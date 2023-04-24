@@ -18,7 +18,7 @@ function Gigs() {
     queryFn: () =>
       newRequest
         .get(
-          `/gigs${search}&sort=${sort}`
+          `/gigs${search}`
         )
         .then((res) => {
           return res.data;
