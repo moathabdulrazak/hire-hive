@@ -37,7 +37,10 @@ export const deleteGig = async (req, res, next) => {
 
 export const getGig = async (req, res, next) => {
   try {
-    
+    const gig = await Gig.findById(req.params.id)
+    // @ts-ignore
+    if(!gig) return next(createError(404, `No gig has been found at this id ${gig.id}`))
+    res.status(200).send(gig)
   } catch (error) {
     next(error)
   }
