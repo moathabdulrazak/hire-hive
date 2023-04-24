@@ -2,12 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import newRequest from "../../utils/newRequest";
 import "./Review.scss";
-
 const Review = ({ review }) => {
-  const { isLoading, error, data } = useQuery([review.userId], {
-    queryFn: () => newRequest.get(`/users/${review.userId}`).then((res) => res.data),
-  });
-  
+  const { isLoading, error, data } = useQuery(
+    {
+      queryKey: [review.userId],
+      queryFn: () =>
+        newRequest.get(`/users/${review.userId}`).then((res) => {
+          return res.data;
+        }),
+    },
+  );
+
+
   return (
     <div className="review">
       {isLoading ? (
@@ -16,7 +22,7 @@ const Review = ({ review }) => {
         "error"
       ) : (
         <div className="user">
-          <img className="pp" src={data.img || "https://invisiblechildren.com/wp-content/uploads/2012/07/facebook-profile-picture-no-pic-avatar.jpg"} alt="" />
+          <img className="pp" src={data.img || "https://www.webinarleads4you.com/wp-content/uploads/2017/02/no-avatar-350x350.jpg"} alt="" />
           <div className="info">
             <span>{data.username}</span>
             <div className="country">
@@ -29,14 +35,16 @@ const Review = ({ review }) => {
         {Array(review.star)
           .fill()
           .map((item, i) => (
-            <img src="/img/star.png" alt="https://invisiblechildren.com/wp-content/uploads/2012/07/facebook-profile-picture-no-pic-avatar.jpg" key={i} />
+            <img src="/img/star.png " alt="" key={i} />
           ))}
         <span>{review.star}</span>
       </div>
       <p>{review.desc}</p>
       <div className="helpful">
         <span>Helpful?</span>
+        <img src="/img/like.png" alt="" />
         <span>Yes</span>
+        <img src="/img/dislike.png" alt="" />
         <span>No</span>
       </div>
     </div>
