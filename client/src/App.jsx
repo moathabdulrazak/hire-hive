@@ -1,4 +1,3 @@
-
 import "./app.scss";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import React from "react";
@@ -10,19 +9,22 @@ import Gig from "./pages/gig/Gig";
 import Login from "./pages/login/Login";
 import Add from "./pages/add/Add";
 import Footer from "./components/footer/Footer";
-import  Register  from "./pages/register/Register";
-import Messages  from "./pages/messages/messages";
-import  Message  from "./pages/message/message";
+import Register from "./pages/register/Register";
+import Messages from "./pages/messages/messages";
+import Message from "./pages/message/message";
 import Orders from "./pages/orders/Orders.jsx";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
+  const queryClient = new QueryClient();
   const Layout = () => {
     return (
       <div className="app">
-        <Navbar />
-        <Outlet />
-        <Footer/>
+        <QueryClientProvider client={queryClient}>
+          <Navbar />
+          <Outlet />
+          <Footer />
+        </QueryClientProvider>
       </div>
     );
   };
@@ -42,19 +44,19 @@ function App() {
         },
         {
           path: "/mygigs",
-          element: <MyGigs/>
+          element: <MyGigs />,
         },
         {
           path: "/orders",
-          element: <Orders/>
+          element: <Orders />,
         },
         {
           path: "/messages",
-          element: <Messages/>
+          element: <Messages />,
         },
         {
           path: "/message/:id",
-          element: <Message/>
+          element: <Message />,
         },
         {
           path: "/add",
@@ -68,7 +70,7 @@ function App() {
     },
     {
       path: "/register",
-      element: <Register/>
+      element: <Register />,
     },
     {
       path: "/login",
