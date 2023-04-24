@@ -48,7 +48,8 @@ export const getGig = async (req, res, next) => {
 
 export const getGigs = async (req, res, next) => {
   try {
-    
+    const gigs = await Gig.find()
+    res.status(200).send(gigs)
   } catch (error) {
     next(error)
   }
