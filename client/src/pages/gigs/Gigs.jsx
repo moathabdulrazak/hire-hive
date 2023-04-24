@@ -1,58 +1,79 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Gigs.scss";
-import { gigs } from "../../data";
-import GigCard from "../../components/gigCard/GigCard.jsx";
-const Gigs = () => {
+import GigCard from "../../components/gigCard/GigCard";
+import newRequest from "../../utils/newRequest";
+import { useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+
+function Gigs() {
+  const [sort, setSort] = useState("sales");
   const [open, setOpen] = useState(false);
-  const [sort, setSort] = useState('sales')
+  const minRef = useRef();
+  const maxRef = useRef();
+
+  const { search } = useLocation();
+
+  const { isLoading, error, data, refetch } = useQuery({
+    queryKey: ["repoData"],
+    queryFn: () =>
+      newRequest
+        .get(
+          `/gigs${search}&sort=${sort}`
+        )
+        .then((res) => {
+          return res.data;
+        }),
+  });
+  console.log(data);
 
   const reSort = (type) => {
-    setSort(type)
-    setOpen(false)
-  }
+    setSort(type);
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    refetch();
+  }, [sort]);
+
+
 
   return (
     <div className="gigs">
       <div className="container">
-        <span className="breadcrumbs">HIVES SOFTWARE DEVELOPER</span>
-        <h1>Next warrior</h1>
+        <span className="breadcrumbs">Hire hive {">"} Graphics & Design {">"} </span>
+        <h1>AI Artists</h1>
         <p>
-          Explore the boundaries of software development with hives developers
+          Explore the boundaries of art and technology with Hives AI artists
         </p>
         <div className="menu">
-          <div className="left">
-            <span>Budget</span>
-            <input type="text" placeholder="min" />
-            <input type="text" placeholder="max" />
-            <button>Apply</button>
-          </div>
           <div className="right">
-            <span className="sortBy">Sort By</span>
-            <span className="sortType">{sort ==="sales" ? 'Best selling' : 'Newest'}</span>
-            <img
-              src="public\img\down.png"
-              alt=""
-              onClick={() => setOpen(!open)}
-            />
+            <span className="sortBy">Sort by</span>
+            <span className="sortType">
+              {sort === "sales" ? "Best Selling" : "Newest"}
+            </span>
+            <img src="./img/down.png" alt="" onClick={() => setOpen(!open)} />
             {open && (
               <div className="rightMenu">
-                    {sort === "sales" ? (
+                {sort === "sales" ? (
                   <span onClick={() => reSort("createdAt")}>Newest</span>
                 ) : (
                   <span onClick={() => reSort("sales")}>Best Selling</span>
-                  )}
+                )}
+                <span onClick={() => reSort("sales")}>Popular</span>
               </div>
             )}
           </div>
         </div>
         <div className="cards">
-          {gigs.map((gig) => (
-            <GigCard key={gig.id} item={gig} />
-          ))}
+          {isLoading
+            ? "loading"
+            : error
+            ? "Something went wrong!"
+            : data.map((gig) => <GigCard key={gig._id} item={gig} />)}
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Gigs;
